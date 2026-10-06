@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report name="ra8117">
+  <counter type="INSTRUCTION" missed="100" covered="300"/>
+  <counter type="LINE" missed="50" covered="150"/>
+</report>
