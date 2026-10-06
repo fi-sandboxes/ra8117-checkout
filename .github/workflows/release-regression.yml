@@ -1,0 +1,15 @@
+# G3: the release regression run - the only run that uploads an artifact named exactly ReleaseRegression.
+name: Release Regression
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ReleaseRegression
+          path: fixtures/junit-release-regression.xml
