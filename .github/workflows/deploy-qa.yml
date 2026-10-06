@@ -1,0 +1,15 @@
+# G2: deploys to the non-production Environment "qa". GitHub creates the deployment and its
+# statuses from this run, so their log_url / target_url point at /actions/runs/<this run id>.
+name: Deploy QA
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  deployments: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: qa
+    steps:
+      - run: echo "deploying ${GITHUB_SHA} to qa"
