@@ -1,0 +1,20 @@
+# SonarCloud analysis of repository A. The SonarCloud project NAME must equal the repository name:
+# Release Assurance matches a GitHub run to a Sonar project by repository name (key or name).
+# New Code must be bounded (previous version or reference branch) - set it in the SonarCloud UI.
+# Manual trigger only: the fixture uploads are a dozen commits, and the analysis runs once,
+# after the SONAR_TOKEN secret exists.
+name: SonarCloud
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
