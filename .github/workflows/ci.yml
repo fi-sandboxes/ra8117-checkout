@@ -1,0 +1,20 @@
+# G1 (and the late run for R3): a CI run that publishes unit-test JUnit and Cobertura coverage.
+# The reports are committed fixtures, not live test output, so the counts are known in advance.
+name: CI
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: unit-tests
+          path: fixtures/junit-unit.xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: fixtures/coverage-cobertura.xml
