@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="unit" tests="10" failures="0" errors="0" skipped="0">
+    <testcase classname="unit.pricing" name="unit_case_01" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_02" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_03" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_04" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_05" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_06" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_07" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_08" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_09" time="0.01"/>
+    <testcase classname="unit.pricing" name="unit_case_10" time="0.01"/>
+  </testsuite>
+</testsuites>
