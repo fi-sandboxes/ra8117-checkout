@@ -16,9 +16,8 @@ function quote({ zone, weightKg, subtotal, express = false }) {
   if (weightKg < 0) {
     throw new RangeError('weight must not be negative');
   }
-  // Known defect (bug "Free shipping not applied at the exact threshold"): the threshold is
-  // meant to be inclusive.
-  if (rules.freeFrom !== null && subtotal > rules.freeFrom && !express) {
+  // The free-shipping threshold is inclusive: a basket of exactly `freeFrom` ships free.
+  if (rules.freeFrom !== null && subtotal >= rules.freeFrom && !express) {
     return 0;
   }
   const price = rules.base + rules.perKg * Math.ceil(weightKg);
