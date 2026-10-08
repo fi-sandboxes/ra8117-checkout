@@ -1,0 +1,27 @@
+# The release regression run: the only workflow that publishes an artifact named exactly
+# ReleaseRegression. Failing regression tests are reported, not hidden, so the job continues.
+name: Release Regression Suite
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run test:regression
+        continue-on-error: true
+        env:
+          JEST_JUNIT_OUTPUT_DIR: reports
+          JEST_JUNIT_OUTPUT_NAME: release-regression.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ReleaseRegression
+          path: reports/release-regression.xml
