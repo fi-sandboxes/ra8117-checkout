@@ -3,8 +3,8 @@
 const { newToken, createSession, isExpired } = require('../../src/session');
 
 describe('session', () => {
-  test('token has the requested length', () => {
-    expect(newToken(10)).toHaveLength(10);
+  test('token is hex of the requested byte length', () => {
+    expect(newToken(10)).toMatch(/^[0-9a-f]{20}$/);
   });
 
   test('session expires after 30 minutes', () => {

@@ -1,14 +1,10 @@
 'use strict';
 
-// Checkout session tokens. NOTE: Math.random is not a cryptographically secure source - this is
-// the kind of code a security hotspot review is for.
-function newToken(length = 24) {
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  let token = '';
-  for (let i = 0; i < length; i += 1) {
-    token += alphabet[Math.floor(Math.random() * alphabet.length)];
-  }
-  return token;
+const crypto = require('crypto');
+
+// Checkout session tokens from a cryptographically secure source (replaces Math.random).
+function newToken(bytes = 24) {
+  return crypto.randomBytes(bytes).toString('hex');
 }
 
 function createSession(customerId, now = Date.now()) {
