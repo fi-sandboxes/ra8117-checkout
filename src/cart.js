@@ -2,6 +2,9 @@
 
 const { roundMoney } = require('./currency');
 
+// The most units of one SKU a single cart line may hold (warehouse pick limit).
+const MAX_LINE_QUANTITY = 99;
+
 function createCart() {
   return { lines: [] };
 }
@@ -11,8 +14,12 @@ function addLine(cart, sku, unitPrice, quantity = 1) {
     throw new RangeError('quantity must be positive');
   }
   const existing = cart.lines.find((line) => line.sku === sku);
+  const resulting = (existing ? existing.quantity : 0) + quantity;
+  if (resulting > MAX_LINE_QUANTITY) {
+    throw new RangeError(`a cart line holds at most ${MAX_LINE_QUANTITY} units`);
+  }
   if (existing) {
-    existing.quantity += quantity;
+    existing.quantity = resulting;
   } else {
     cart.lines.push({ sku, unitPrice, quantity });
   }
@@ -32,4 +39,4 @@ function itemCount(cart) {
   return cart.lines.reduce((count, line) => count + line.quantity, 0);
 }
 
-module.exports = { createCart, addLine, removeLine, subtotal, itemCount };
+module.exports = { createCart, addLine, removeLine, subtotal, itemCount, MAX_LINE_QUANTITY };
