@@ -7,6 +7,10 @@ function createCart() {
 }
 
 function addLine(cart, sku, unitPrice, quantity = 1) {
+  if (!Number.isFinite(unitPrice) || unitPrice < 0) {
+    throw new RangeError('unit price must be a finite, non-negative amount');
+  }
+
   if (quantity <= 0) {
     throw new RangeError('quantity must be positive');
   }
