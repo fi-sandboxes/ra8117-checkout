@@ -13,7 +13,9 @@ function format(amount, currency) {
     throw new Error(`unsupported currency ${currency}`);
   }
   const separator = /^[A-Z]+$/.test(symbol) ? ' ' : '';
-  return `${symbol}${separator}${roundMoney(amount).toFixed(2)}`;
+  const rounded = roundMoney(amount);
+  const sign = rounded < 0 ? '-' : '';
+  return `${sign}${symbol}${separator}${Math.abs(rounded).toFixed(2)}`;
 }
 
 module.exports = { roundMoney, format, SYMBOLS };
