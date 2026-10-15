@@ -8,6 +8,8 @@ describe('isValidPostcode', () => {
     'M1 1AE',
     'CR2 6XH',
     'DN55 1PT',
+    'SW1A1AA',
+    'sw1a 1aa',
   ])('accepts %s', (postcode) => {
     expect(isValidPostcode(postcode)).toBe(true);
   });
