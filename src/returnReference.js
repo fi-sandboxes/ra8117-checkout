@@ -1,6 +1,6 @@
 'use strict';
 
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 // Return reference from a cryptographically secure source (consistent with session.js's tokens).
 function newReturnReference() {
