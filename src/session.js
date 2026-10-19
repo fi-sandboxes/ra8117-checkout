@@ -1,6 +1,6 @@
 'use strict';
 
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 // Checkout session tokens from a cryptographically secure source (replaces Math.random).
 function newToken(bytes = 24) {

@@ -4,7 +4,7 @@
 const ZONE_DAYS = { domestic: 2, eu: 5, world: 10 };
 
 function addBusinessDays(date, days) {
-  const result = new Date(date.getTime());
+  const result = new Date(date);
   let added = 0;
   while (added < days) {
     result.setUTCDate(result.getUTCDate() + 1);
