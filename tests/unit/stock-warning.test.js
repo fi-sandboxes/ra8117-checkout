@@ -8,6 +8,12 @@ test('warns when fewer than the threshold remain', () => {
   });
 });
 
+test('a sold-out line says it is sold out, not that a few are left', () => {
+  expect(lowStockWarning({ sku: 'SKU-1' }, 0)).toEqual({
+    sku: 'SKU-1', unitsRemaining: 0, warning: 'Sold out',
+  });
+});
+
 test('is silent at or above the threshold', () => {
   expect(lowStockWarning({ sku: 'SKU-1' }, LOW_STOCK_THRESHOLD)).toBeNull();
 });
