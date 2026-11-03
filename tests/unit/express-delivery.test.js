@@ -11,6 +11,10 @@ describe('expressQuote', () => {
     expect(expressQuote('eu').businessDays).toBe(3);
   });
 
+  test('is not offered for world orders', () => {
+    expect(() => expressQuote('world')).toThrow('express delivery is not available for world');
+  });
+
   test('rejects an unknown zone', () => {
     expect(() => expressQuote('mars')).toThrow('unknown shipping zone mars');
   });
